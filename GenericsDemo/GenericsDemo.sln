@@ -10,15 +10,20 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		PGGM|Any CPU = PGGM|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{8D92C40F-F1D4-4856-ACA9-9E5EC763D339}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8D92C40F-F1D4-4856-ACA9-9E5EC763D339}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D92C40F-F1D4-4856-ACA9-9E5EC763D339}.PGGM|Any CPU.ActiveCfg = PGGM|Any CPU
+		{8D92C40F-F1D4-4856-ACA9-9E5EC763D339}.PGGM|Any CPU.Build.0 = PGGM|Any CPU
 		{8D92C40F-F1D4-4856-ACA9-9E5EC763D339}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D92C40F-F1D4-4856-ACA9-9E5EC763D339}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90B99896-23B4-4B30-ADED-4CE673EE97FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{90B99896-23B4-4B30-ADED-4CE673EE97FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90B99896-23B4-4B30-ADED-4CE673EE97FC}.PGGM|Any CPU.ActiveCfg = PGGM|Any CPU
+		{90B99896-23B4-4B30-ADED-4CE673EE97FC}.PGGM|Any CPU.Build.0 = PGGM|Any CPU
 		{90B99896-23B4-4B30-ADED-4CE673EE97FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90B99896-23B4-4B30-ADED-4CE673EE97FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
