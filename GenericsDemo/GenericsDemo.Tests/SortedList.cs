@@ -5,6 +5,8 @@ using System.Text;
 
 namespace GenericsDemo.Tests
 {
+    delegate bool VerwijderDelegate<T>(T item);
+
     class SortedList<T> : IEnumerable<T>
         where T : IComparable<T>
     {
@@ -53,6 +55,22 @@ namespace GenericsDemo.Tests
             {
                 var next = node.Next;
                 if (node.Value.Equals(item))
+                {
+                    items.Remove(node);
+                }
+
+                node = next;
+            }
+        }
+
+        
+        public void Remove(VerwijderDelegate<T> vergelijk)
+        {
+            var node = items.First;
+            while (node != null)
+            {
+                var next = node.Next;
+                if (vergelijk(node.Value))
                 {
                     items.Remove(node);
                 }

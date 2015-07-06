@@ -50,10 +50,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ICompare.cs" />
     <Compile Include="Persoon.cs" />
     <Compile Include="SortedList.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTest2.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GenericsDemo\GenericsDemo.csproj">

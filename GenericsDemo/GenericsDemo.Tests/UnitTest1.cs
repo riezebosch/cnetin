@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GenericsDemo;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GenericsDemo.Tests
 {
@@ -88,7 +89,7 @@ namespace GenericsDemo.Tests
         {
             var ll = new LinkedList<int>();
             var first = ll.First;
-            
+
         }
 
         [TestMethod]
@@ -125,7 +126,7 @@ namespace GenericsDemo.Tests
         [TestMethod]
         public void SortedListWithRemove()
         {
-             var sl = new SortedList<int>();
+            var sl = new SortedList<int>();
             sl.Add(2);
             sl.Add(1);
             sl.Add(3);
@@ -145,6 +146,128 @@ namespace GenericsDemo.Tests
 
             sl.Remove(2);
             Assert.AreEqual(3, sl[1]);
+        }
+
+        [TestMethod]
+        public void TestSortedListWithPersonen()
+        {
+            var sl = new SortedList<Persoon>();
+            sl.Add(new Persoon { Naam = "Manuel" });
+            sl.Add(new Persoon { Naam = "C#" });
+
+            foreach (var p in sl)
+            {
+                Console.WriteLine(p.Naam);
+            }
+        }
+
+        [TestMethod]
+        public void TestSortedListWithPersonenRemove()
+        {
+            var sl = new SortedList<Persoon>();
+            sl.Add(new Persoon { Naam = "Manuel" });
+            sl.Add(new Persoon { Naam = "C#" });
+
+            VergelijkPersoon vergelijk = new VergelijkPersoon(VerwijderAllePersonenMetDeNaamManuel);
+            Remove(sl, vergelijk);
+
+            VergelijkPersoon vergelijk2 = new VergelijkPersoon(VerwijderAllCSharpVakken);
+            Remove(sl, vergelijk2);
+
+            foreach (var p in sl)
+            {
+                Console.WriteLine(p.Naam);
+            }
+        }
+
+        private void Remove(SortedList<Persoon> sl, VergelijkPersoon vergelijk)
+        {
+            foreach (var item in sl)
+            {
+                if (vergelijk(item))
+                {
+                    sl.Remove(item);
+                    break;
+                }
+            }
+        }
+
+        delegate bool VergelijkPersoon(Persoon p);
+
+        private bool VerwijderAllePersonenMetDeNaamManuel(Persoon p)
+        {
+            return p.Naam == "Manuel";
+        }
+
+        private bool VerwijderAllCSharpVakken(Persoon p)
+        {
+            return p.Naam == "C#";
+        }
+
+        delegate void MyDelegate(string input);
+
+        [TestMethod]
+        public void DemoVanDelegates()
+        {
+            MyDelegate m = new MyDelegate(Print);
+            m("voorbeeld");
+
+            DoeIetsMetEenDelegate(m);
+        }
+
+        private void DoeIetsMetEenDelegate(MyDelegate del)
+        {
+            del("uitvoer van delegate");
+        }
+
+        private void Print(string message)
+        {
+            Console.WriteLine(message);
+        }
+
+        [TestMethod]
+        public void TestVerwijderVanPersoonMetBehulpVanDelegate()
+        {
+            var sl = new SortedList<Persoon>();
+            sl.Add(new Persoon { Naam = "Manuel" });
+            sl.Add(new Persoon { Naam = "C#" });
+
+            this.naam = "Manuel";
+            VerwijderDelegate<Persoon> verwijder = new VerwijderDelegate<Persoon>(Verwijder);
+            sl.Remove(verwijder);
+
+            foreach (var item in sl)
+            {
+                Console.WriteLine(item.Naam);
+            }
+
+            string naam = "C#";
+            sl.Remove(delegate(Persoon p) { return p.Naam == naam; });
+            
+            sl.Remove(p => p.Naam == "Manuel");
+            sl.Remove((Persoon p) => p.Naam == "Manuel");
+            sl.Remove((Persoon p) => { return p.Naam == "Manuel"; });
+        }
+
+        string naam;
+
+        private bool Verwijder(Persoon p)
+        {
+            return p.Naam == naam;
+        }
+
+        [TestMethod]
+        public void DemoVanLinq()
+        {
+            List<Persoon> items = new List<Persoon> 
+            { 
+                new Persoon 
+                { 
+                    Naam = "Manuel" 
+                }
+            };
+
+            items.Select(p => p.Naam == "Manuel");
         }
     }
 }

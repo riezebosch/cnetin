@@ -5,13 +5,18 @@ using System.Text;
 
 namespace GenericsDemo.Tests
 {
-    class Persoon : IComparable
+    class Persoon : IComparable<Persoon>, IComparable
     {
-        public int CompareTo(object obj)
-        {
-            return -1;
+        public string Naam { get; set; }
 
+        public int CompareTo(Persoon other)
+        {
+            return this.Naam.CompareTo(other.Naam);
         }
 
+        public int CompareTo(object obj)
+        {
+            return this.CompareTo(obj as Persoon);
+        }
     }
 }
