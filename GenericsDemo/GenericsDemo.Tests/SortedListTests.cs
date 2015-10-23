@@ -55,6 +55,33 @@ namespace GenericsDemo.Tests
 
             Assert.AreEqual("223455", sb.ToString());
         }
+
+        [TestMethod]
+        public void PlusOperatorOpSortedList()
+        {
+            SortedList<int> list = new SortedList<int>();
+            list += 4;
+            list += 2;
+
+            Assert.AreEqual(2, list[0]);
+            Assert.AreEqual(4, list[1]);
+        }
+
+        [TestMethod]
+        public void AssignmentOperatorOpSortedList()
+        {
+            SortedList<int> list = 1;
+            Assert.AreEqual(1, list[0]);
+        }
+
+        [TestMethod]
+        public void AssignmentAndPlusOperator()
+        {
+            SortedList<int> list = ((SortedList<int>)1) + 2 + 3;
+            Assert.AreEqual(1, list[0]);
+            Assert.AreEqual(2, list[1]);
+            Assert.AreEqual(3, list[2]);
+        }
     }
 
 

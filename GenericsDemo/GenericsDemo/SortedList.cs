@@ -56,5 +56,16 @@ namespace GenericsDemo
                 return node.Value;
             }
         }
+
+        public static SortedList<T> operator +(SortedList<T> list, T item)
+        {
+            list.Add(item);
+            return list;
+        }
+
+        public static implicit operator SortedList<T>(T item)
+        {
+            return new SortedList<T> { item };
+        }
     }
 }
