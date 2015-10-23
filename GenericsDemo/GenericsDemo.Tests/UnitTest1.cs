@@ -46,10 +46,11 @@ namespace GenericsDemo.Tests
             var i1 = CreateItem(3);
             var i2 = CreateItem<int>(3);
             //string i3 = CreateItem("Pieter");
-            Persoon p = CreateItem<Persoon>(null);
+            //Persoon p = CreateItem<Persoon>(null);
         }
 
-        private ANDER_TYPE CreateItem<ANDER_TYPE>(ANDER_TYPE input) where ANDER_TYPE : IComparable, new()
+        private ANDER_TYPE CreateItem<ANDER_TYPE>(ANDER_TYPE input) 
+            where ANDER_TYPE : IComparable, new()
         {
             if (input == null)
             {

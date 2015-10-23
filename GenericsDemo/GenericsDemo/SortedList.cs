@@ -4,16 +4,24 @@ using System.Collections.Generic;
 
 namespace GenericsDemo
 {
+    public delegate IComparable SelectSortProp<T>(T item);
+
     public class SortedList<T> : IEnumerable<T>
-        where T : IComparable<T>
     {
         LinkedList<T> items = new LinkedList<T>();
+        private SelectSortProp<T> select;
+
+        public SortedList(SelectSortProp<T> select)
+        {
+            this.select = select;
+        }
+
         public void Add(T item)
         {
             // search in "items" for correct position
             // and add new item there
             var node = items.First;
-            while (node != null && node.Value.CompareTo(item) < 0)
+            while (node != null && select(node.Value).CompareTo(select(item)) < 0)
             {
                 node = node.Next;
             }
@@ -62,10 +70,19 @@ namespace GenericsDemo
             list.Add(item);
             return list;
         }
+    }
 
-        public static implicit operator SortedList<T>(T item)
+    public class SortedList
+    {
+        public static SortedList<T> Create<T>(SelectSortProp<T> select)
         {
-            return new SortedList<T> { item };
+            return new SortedList<T>(select);
+        }
+
+        public static SortedList<T> Create<T>()
+            where T : IComparable
+        {
+            return new SortedList<T>(n => n);
         }
     }
 }
