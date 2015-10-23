@@ -2,22 +2,10 @@
 
 namespace GenericsDemo.Tests
 {
-    class Persoon: IComparable
+    class Persoon
     {
-        public Persoon()
-        {
-
-        }
-
-        public Persoon(string naam)
-        {
-            this.Naam = naam;
-        }
         public string Naam { get; set; }
 
-        public int CompareTo(object obj)
-        {
-            throw new NotImplementedException();
-        }
+        public int Leeftijd { get; set; }
     }
 }
