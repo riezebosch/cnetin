@@ -122,7 +122,7 @@ namespace ConsoleApp1
         }
     }
 
-    class Driehoek : Vorm
+    public class Driehoek : Vorm
     {
         public double Breedte { get; set; }
         public double Hoogte { get; set; }
@@ -133,7 +133,7 @@ namespace ConsoleApp1
         }
     }
 
-    class Cirkel : Vorm
+    public class Cirkel : Vorm
     {
         public double Diameter { get; set; }
 
