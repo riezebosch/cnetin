@@ -51,6 +51,10 @@ namespace ConsoleApp1
         /// <param name="i">De vorm</param>
         public static void Print(Vorm i)
         {
+            if (i is Rechthoek)
+            {
+
+            }
             Console.WriteLine("Oppervlakte: " + i.BerekenOppervlakte() + ".");
             Console.WriteLine("Oppervlakte: {0:#.####}.", i.BerekenOppervlakte());
             Console.WriteLine($"Oppervlakte: {i.BerekenOppervlakte():#.###}.");
