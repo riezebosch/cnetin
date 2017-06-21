@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace ConsoleApp1
 {
@@ -6,6 +7,18 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Press 'Q' to exit");
+
+            
+            while (true)
+            {
+                var key = Console.ReadKey();
+                if (key.Key == ConsoleKey.Q)
+                {
+                    break;
+                }
+            }
+
             Console.WriteLine("Hello World!");
             Console.WriteLine(true);
 
@@ -58,6 +71,7 @@ namespace ConsoleApp1
             Console.WriteLine("Oppervlakte: " + i.BerekenOppervlakte() + ".");
             Console.WriteLine("Oppervlakte: {0:#.####}.", i.BerekenOppervlakte());
             Console.WriteLine($"Oppervlakte: {i.BerekenOppervlakte():#.###}.");
+
         }
     }
 
