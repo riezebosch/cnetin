@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System.Linq;
+using Xunit;
 
 namespace XUnitTestProject1
 {
@@ -63,6 +64,12 @@ namespace XUnitTestProject1
             int restwaarde = som % 11;
             bool resultaat = restwaarde == 0;
             return resultaat;
+        }
+
+        [Fact]
+        public void ElevenProofIn1Regel()
+        {
+            Assert.True("525727752".Select(c => c - '0').Select((i, g) => i * (9-g)).Sum() % 11 == 0);
         }
     }
 }
