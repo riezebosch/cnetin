@@ -36,13 +36,21 @@ namespace XUnitTestProject1
                 sut.Bewaar(i);
             }
         }
+
+        [Fact]
+
+        public void HetIsNietHandigDatLijstjeAlleenVoorEenBepaaldTypeWerkt()
+        {
+            var sut = new Lijstje();
+            sut.Bewaar("tekst");
+        }
     }
     public class Lijstje
     {
-        int[] opslag = new int[5];
+        object[] opslag = new object[5];
         private int aantal;
 
-        public void Bewaar(int waarde)
+        public void Bewaar(object waarde)
         {
             ResizeIfNeeded();
             opslag[aantal++] = waarde;
@@ -52,7 +60,7 @@ namespace XUnitTestProject1
         {
             if (aantal == opslag.Length)
             {
-                var temp = new int[aantal * 2];
+                var temp = new object[aantal * 2];
                 Array.Copy(opslag, temp, aantal);
                 //for (int i = 0; i < aantal; i++)
                 //{
@@ -63,7 +71,7 @@ namespace XUnitTestProject1
             }
         }
 
-        public int Ophalen(int index)
+        public object Ophalen(int index)
         {
             return opslag[index];
         }
