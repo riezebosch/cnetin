@@ -11,7 +11,7 @@ namespace XUnitTestProject1
         [Fact]
         public void NaNummerToevoegenMoetDezeErOokWeerErUitGehaaldKunnenWorden()
         {
-            var sut = new Lijstje();
+            var sut = new Lijstje<int>();
             sut.Bewaar(4);
 
             Assert.Equal(4, sut.Ophalen(0));
@@ -20,7 +20,7 @@ namespace XUnitTestProject1
         [Fact]
         public void HetTweedeNummerMoetErOokGoedUitKomen()
         {
-            var sut = new Lijstje();
+            var sut = new Lijstje<int>();
             sut.Bewaar(4);
             sut.Bewaar(7);
 
@@ -30,7 +30,7 @@ namespace XUnitTestProject1
         [Fact]
         public void HetMoetOokWerkenVoorHeleGroteAantallen()
         {
-            var sut = new Lijstje();
+            var sut = new Lijstje<int>();
             for (int i = 0; i < 1000; i++)
             {
                 sut.Bewaar(i);
@@ -41,16 +41,45 @@ namespace XUnitTestProject1
 
         public void HetIsNietHandigDatLijstjeAlleenVoorEenBepaaldTypeWerkt()
         {
-            var sut = new Lijstje();
+            var sut = new Lijstje<string>();
             sut.Bewaar("tekst");
         }
+
+        public void HetIsLelijkAlsIkNietGoedWeetVoorafWatErInMijnLijstjeZit()
+        {
+            var sut = new Lijstje<object>();
+            sut.Bewaar("wortel");
+            sut.Bewaar(1);
+
+            object result = sut.Ophalen(0);
+            if (result is int)
+            {
+            }
+
+            if (result.GetType() == typeof(int))
+            {
+            }
+
+            int getal = (int)sut.Ophalen(0);
+        }
+
+        [Fact]
+        public void IsDatNietStandaardAlBeschikbaarDan()
+        {
+            var janatuurlijkwel = new List<int>();
+            janatuurlijkwel.Add(4);
+            janatuurlijkwel.Add(7);
+
+            Assert.Equal(7, janatuurlijkwel[1]);
+        }
     }
-    public class Lijstje
+
+    public class Lijstje<T>
     {
-        object[] opslag = new object[5];
+        T[] opslag = new T[5];
         private int aantal;
 
-        public void Bewaar(object waarde)
+        public void Bewaar(T waarde)
         {
             ResizeIfNeeded();
             opslag[aantal++] = waarde;
@@ -60,7 +89,7 @@ namespace XUnitTestProject1
         {
             if (aantal == opslag.Length)
             {
-                var temp = new object[aantal * 2];
+                var temp = new T[aantal * 2];
                 Array.Copy(opslag, temp, aantal);
                 //for (int i = 0; i < aantal; i++)
                 //{
@@ -71,7 +100,7 @@ namespace XUnitTestProject1
             }
         }
 
-        public object Ophalen(int index)
+        public T Ophalen(int index)
         {
             return opslag[index];
         }
