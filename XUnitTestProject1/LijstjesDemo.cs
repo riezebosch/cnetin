@@ -60,6 +60,11 @@ namespace XUnitTestProject1
             {
             }
 
+            if (result is int i)
+            {
+                // Nieuw in C# 7
+            }
+
             int getal = (int)sut.Ophalen(0);
         }
 
