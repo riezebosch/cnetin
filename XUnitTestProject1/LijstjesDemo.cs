@@ -51,21 +51,30 @@ namespace XUnitTestProject1
             sut.Bewaar("wortel");
             sut.Bewaar(1);
 
-            object result = sut.Ophalen(0);
+            int i0 = (int)sut.Ophalen(1);
+
+            object result = sut.Ophalen(1);
+
+            // Dubbele type-check, nogmaals in de cast
             if (result is int)
+            {
+                int i1 = (int)result;
+            }
+
+            // Moet nullable zijn met de as-operator
+            int? i2 = result as int?;
+            if (i2 != null)
+            {
+            }
+
+            // Nieuw in C# 7
+            if (result is int i3)
             {
             }
 
             if (result.GetType() == typeof(int))
             {
             }
-
-            if (result is int i)
-            {
-                // Nieuw in C# 7
-            }
-
-            int getal = (int)sut.Ophalen(0);
         }
 
         [Fact]
@@ -77,9 +86,26 @@ namespace XUnitTestProject1
 
             Assert.Equal(7, janatuurlijkwel[1]);
         }
+
+        [Fact]
+        public void ForEachZouHandigZijnOpMijnEigenLijstje()
+        {
+            var sut = new Lijstje<int>();
+            sut.Bewaar(4);
+
+            foreach (var item in sut)
+            {
+
+            }
+        }
+
+
+   
     }
 
-    public class Lijstje<T>
+   
+
+    public class Lijstje<T> : IEnumerable
     {
         T[] opslag = new T[5];
         private int aantal;
@@ -109,5 +135,17 @@ namespace XUnitTestProject1
         {
             return opslag[index];
         }
+
+        public IEnumerator GetEnumerator()
+        {
+            for (int i = 0; i < aantal; i++)
+            {
+                yield return opslag[i];
+            }
+        }
     }
+
+   
+
+
 }
